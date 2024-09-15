@@ -25,9 +25,9 @@ class _HomePageState extends State<HomePage> {
   void fullExtended(double currentSize, double extent) {
     setState(() {
       if (currentSize == extent) {
-        fullExtend = true;
-      } else {
         fullExtend = false;
+      } else {
+        fullExtend = true;
       }
     });
   }
@@ -206,7 +206,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            if (!fullExtend)
+            if (fullExtend == true)
               const Opacity(
                 opacity: 0.6,
                 child: ModalBarrier(dismissible: false, color: Colors.black),
@@ -218,11 +218,9 @@ class _HomePageState extends State<HomePage> {
               },
               child: DraggableScrollableSheet(
                 expand: true,
-                initialChildSize:
-                    currentSize, // Initial size when it's closed (10% of screen height)
-                minChildSize: currentSize, // Minimum size (when minimized)
-                maxChildSize:
-                    maxChildSize, // Maximum size (when fully expanded)
+                initialChildSize: currentSize,
+                minChildSize: currentSize,
+                maxChildSize: maxChildSize,
                 builder:
                     (BuildContext context, ScrollController scrollController) {
                   return Container(
@@ -236,7 +234,7 @@ class _HomePageState extends State<HomePage> {
                         AnimatedSize(
                           duration: const Duration(milliseconds: 200),
                           child: RotatedBox(
-                            quarterTurns: fullExtend ? 3 : 1,
+                            quarterTurns: fullExtend ? 1 : 3,
                             child: Center(
                               child: Icon(Icons.arrow_forward_ios_rounded),
                             ),
@@ -332,7 +330,13 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.network(data['icon'].toString()),
+                    Image.network(
+                      data['icon'].toString(),
+                      height: 80,
+                      width: 80,
+                      fit: BoxFit.fitWidth,
+                    ),
+                    SizedBox(height: 10),
                     Expanded(
                       child: Text(
                         data['title'].toString(),

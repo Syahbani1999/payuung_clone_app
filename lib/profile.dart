@@ -102,7 +102,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ],
           ),
-          SizedBox(height: 30), // Add space between stepper and content
+          SizedBox(height: 30),
           Expanded(
             child: Container(
               child: stepContent(currentStep),
@@ -123,7 +123,6 @@ class _ProfilePageState extends State<ProfilePage> {
       child: Column(
         // mainAxisSize: MainAxisSize.min,
         children: [
-          // Step indicator (Circle)
           CircleAvatar(
             radius: 20.0,
             backgroundColor: isActive ? Color(0xFFF8C20A) : Colors.grey,
@@ -150,7 +149,6 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  // Method to display content based on the step
   Widget stepContent(int step) {
     switch (step) {
       case 0:
